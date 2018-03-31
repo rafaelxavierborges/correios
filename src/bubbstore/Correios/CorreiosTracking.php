@@ -82,15 +82,9 @@ class CorreiosTracking
                     'delivered' => $key['status'] == 'Entrega Efetuada' || $key['status'] == 'Objeto entregue ao destinatário'
                 ];
             }, $tracking);
-
-            $i = 0;
             
-            while (!isset($trackingObject[0])) {
+            if (!isset($trackingObject[0])) {
                 return $this->find();
-                $i++;
-                if ( $i == 10 ) {
-                    throw new CorreiosTrackingException('Tracking code not found');
-                }
             }
 
             $firstTrackingObject = $trackingObject[0];
